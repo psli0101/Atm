@@ -24,6 +24,9 @@ public class LoginActivity extends AppCompatActivity {
         String pw = edPassWD.getText().toString();
         if ( "PS".equals(id) && "1234".equals(pw) ) {
             Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+            getIntent().putExtra("LOGIN_ID", id);
+            getIntent().putExtra("LOGIN_PASSWD", pw);
+            setResult(RESULT_OK, getIntent());
             finish();
         } else {
             new AlertDialog.Builder(this)
