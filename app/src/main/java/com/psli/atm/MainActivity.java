@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     boolean logon = false;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_test);
         if (!logon){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, PAGE_LOGIN);
@@ -70,5 +71,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void change(View view) {
+        ImageView i_test = (ImageView) findViewById(R.id.test);
+        i_test.setImageResource(R.drawable.ic_location_city_black_36dp);
     }
 }
