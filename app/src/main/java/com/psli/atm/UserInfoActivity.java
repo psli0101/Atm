@@ -15,6 +15,10 @@ public class UserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_info);
         this.edName = (EditText) findViewById(R.id.name);
         this.edPhone = (EditText) findViewById(R.id.phone);
+        edName.setText(getSharedPreferences("atm", MODE_PRIVATE)
+                .getString("NAME", ""));
+        edPhone.setText(getSharedPreferences("atm", MODE_PRIVATE)
+                .getString("PHONE", ""));
     }
 
     public void done(View view) {
