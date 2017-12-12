@@ -33,4 +33,23 @@
         app:layout_anchorGravity="bottom|right"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
+    <ImageView
+        android:id="@+id/hi"
+        android:layout_width="127dp"
+        android:layout_height="126dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="center_vertical|center_horizontal"
+        app:srcCompat="@drawable/ic_mood_black_36dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:onClick="change"
+        android:text="click me"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="top|center_horizontal" />
+
 </android.support.design.widget.CoordinatorLayout>
