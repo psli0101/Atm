@@ -15,13 +15,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     boolean logon = false;
-    public static final int PAGE_LOGIN = 102;
+    public static final int PAGE_LOGIN = 102, PAGE_SET = 103;
+    private int flag = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!logon){
+        if (!logon) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, PAGE_LOGIN);
         }
@@ -32,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+                startActivityForResult(intent, PAGE_SET);
+
             }
         });
     }
@@ -45,10 +47,18 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 String id = data.getStringExtra("LOGIN_ID");
                 String pw = data.getStringExtra("LOGIN_PASSWD");
-                Log.d("RESULT", id+"/"+pw);
+                Log.d("RESULT", id + "/" + pw);
                 Toast.makeText(this, "Welcome, " + id, Toast.LENGTH_LONG).show();
             } else {
                 finish();
+            }
+        }
+        if (requestCode == PAGE_SET) {
+            if (resultCode == RESULT_OK) {
+                String name = data.getStringExtra("USER_NAME");
+                String phone = data.getStringExtra("USER_PHONE");
+                Log.d("RESULT", name + "/" + phone);
+                Toast.makeText(this, name + ", welcome back.", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -77,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void change(View view) {
         ImageView i_test = (ImageView) findViewById(R.id.hi);
+
         i_test.setImageResource(R.drawable.ic_location_city_black_36dp);
     }
 }
