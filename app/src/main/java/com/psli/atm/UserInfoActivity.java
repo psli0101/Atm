@@ -13,14 +13,19 @@ public class UserInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+        this.edName = (EditText) findViewById(R.id.name);
+        this.edPhone = (EditText) findViewById(R.id.phone);
     }
 
     public void done(View view) {
-        this.edName = (EditText) findViewById(R.id.name);
-        this.edPhone = (EditText) findViewById(R.id.phone);
         String name = edName.getText().toString();
         String phone = edPhone.getText().toString();
         Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+        getSharedPreferences("atm", MODE_PRIVATE)
+                .edit()
+                .putString("NAME", name)
+                .putString("PHONE", phone)
+                .apply();
         getIntent().putExtra("USER_NAME", name);
         getIntent().putExtra("USER_PHONE", phone);
         setResult(RESULT_OK, getIntent());

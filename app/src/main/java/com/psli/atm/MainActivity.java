@@ -43,23 +43,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PAGE_LOGIN) {
-            if (resultCode == RESULT_OK) {
-                String id = data.getStringExtra("LOGIN_ID");
-                String pw = data.getStringExtra("LOGIN_PASSWD");
-                Log.d("RESULT", id + "/" + pw);
-                Toast.makeText(this, "Welcome, " + id, Toast.LENGTH_LONG).show();
-            } else {
-                finish();
-            }
-        }
-        if (requestCode == PAGE_SET) {
-            if (resultCode == RESULT_OK) {
-                String name = data.getStringExtra("USER_NAME");
-                String phone = data.getStringExtra("USER_PHONE");
-                Log.d("RESULT", name + "/" + phone);
-                Toast.makeText(this, name + ", welcome back.", Toast.LENGTH_LONG).show();
-            }
+        switch ( requestCode ) {
+            case PAGE_LOGIN:
+                if (resultCode == RESULT_OK) {
+                    String id = data.getStringExtra("LOGIN_ID");
+                    String pw = data.getStringExtra("LOGIN_PASSWD");
+                    Log.d("RESULT", id + "/" + pw);
+                    Toast.makeText(this, "Welcome, " + id, Toast.LENGTH_LONG).show();
+                    getSharedPreferences("atm", MODE_PRIVATE)
+                            .edit()
+                            .putString("USERID", id)
+                            .apply();
+                } else {
+                    finish();
+                }
+                break;
+            case PAGE_SET:
+                if (resultCode == RESULT_OK) {
+                    String name = data.getStringExtra("USER_NAME");
+                    String phone = data.getStringExtra("USER_PHONE");
+                    Log.d("RESULT", name + "/" + phone);
+                    Toast.makeText(this, name + ", welcome back.", Toast.LENGTH_LONG).show();
+                }
+                break;
         }
     }
 
@@ -87,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void change(View view) {
         ImageView i_test = (ImageView) findViewById(R.id.hi);
-
         i_test.setImageResource(R.drawable.ic_location_city_black_36dp);
     }
 }

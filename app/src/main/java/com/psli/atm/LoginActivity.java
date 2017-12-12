@@ -15,11 +15,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.edUserId = (EditText) findViewById( R.id.userid );
+        this.edPassWD = (EditText) findViewById( R.id.passwd );
+        String id = getSharedPreferences("atm", MODE_PRIVATE)
+                .getString("USERID", "");
+        edUserId.setText(id);
     }
 
     public void login(View view) {
-        this.edUserId = (EditText) findViewById( R.id.userid );
-        this.edPassWD = (EditText) findViewById( R.id.passwd );
         String id = edUserId.getText().toString();
         String pw = edPassWD.getText().toString();
         if ( "PS".equals(id) && "1234".equals(pw) ) {
