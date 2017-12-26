@@ -1,12 +1,13 @@
 package com.psli.atm;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class CityActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -26,6 +27,15 @@ public class CityActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(this, AreaActivity.class);
         intent.putExtra("CITY_EXTRA", i);
-        startActivity(intent);
+        startActivityForResult(intent, 200);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            String area = data.getStringExtra("AREA_EXTRA");
+            Toast.makeText(this, area, Toast.LENGTH_SHORT).show();
+        }
     }
 }
