@@ -15,8 +15,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     boolean logon = false;
-    public static final int PAGE_LOGIN = 102, PAGE_SET = 103;
+    public static final int PAGE_LOGIN = 102, PAGE_SET = 103, PAGE_SPINNER = 104;
     private int flag = 1;
+    private String[] func = {"A", "B", "C", "D", "Exit"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, name + ", welcome back.", Toast.LENGTH_LONG).show();
                 }
                 break;
+            case PAGE_SPINNER:
+                break;
         }
     }
 
@@ -94,5 +97,8 @@ public class MainActivity extends AppCompatActivity {
     public void change(View view) {
         ImageView i_test = (ImageView) findViewById(R.id.hi);
         i_test.setImageResource(R.drawable.ic_location_city_black_36dp);
+        //  借放個轉到Ch8的方法，壞消息是看來暫時不能用
+        //Intent intent = new Intent(MainActivity.this, Ch8Activity.class);
+        //startActivityForResult(intent, PAGE_SPINNER);
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="notify_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </array>
+    <array name="cities">
+        <item>新北市</item>
+        <item>台北市</item>
+        <item>基隆市</item>
+    </array>
+</resources>

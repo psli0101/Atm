@@ -1,8 +1,10 @@
 package com.psli.atm;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,6 +21,16 @@ public class UserInfoActivity extends AppCompatActivity {
                 .getString("NAME", ""));
         edPhone.setText(getSharedPreferences("atm", MODE_PRIVATE)
                 .getString("PHONE", ""));
+        Button b_addr = (Button) findViewById(R.id.address);
+        b_addr.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(UserInfoActivity.this, CityActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
     }
 
     public void done(View view) {
